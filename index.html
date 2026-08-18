@@ -3,8 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subrata Pal | Chemistry Researcher</title>
-<meta name="description" content="Hi! This is Subrata Pal, a Ph.D. Candidate in the Chemistry dept., Oklahoma State University, working with Dr. Spencer Pitre on Cobalt photocatalyzed reactions.">
+<title>Subrata Pal | Ph.D. Candidate in Chemistry | Oklahoma State University</title>
+<meta name="description" content="Subrata Pal is a Ph.D. Candidate in Chemistry at Oklahoma State University studying cobalt photocatalysis, photoredox catalysis, and synthetic methodology with Dr. Spencer Pitre.">
+<meta name="author" content="Subrata Pal">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://su-pal.github.io/">
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Subrata Pal | Chemistry Researcher | Oklahoma State University">
+<meta property="og:description" content="Subrata Pal is a Ph.D. Candidate in Chemistry at Oklahoma State University studying cobalt photocatalysis, photoredox catalysis, and synthetic methodology with Dr. Spencer Pitre.">
+<meta property="og:url" content="https://su-pal.github.io/">
+<meta property="og:image" content="https://su-pal.github.io/assets/profile.jpg">
+<meta property="og:image:alt" content="Portrait of Subrata Pal">
+<meta property="profile:first_name" content="Subrata">
+<meta property="profile:last_name" content="Pal">
+
+<!-- X / Twitter sharing -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Subrata Pal | Chemistry Researcher | Oklahoma State University">
+<meta name="twitter:description" content="Subrata Pal is a Ph.D. Candidate in Chemistry at Oklahoma State University studying cobalt photocatalysis, photoredox catalysis, and synthetic methodology with Dr. Spencer Pitre.">
+<meta name="twitter:image" content="https://su-pal.github.io/assets/profile.jpg">
+
+<!-- Person / ProfilePage structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "https://su-pal.github.io/",
+  "name": "Subrata Pal | Chemistry Researcher",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://su-pal.github.io/#subrata-pal",
+    "name": "Subrata Pal",
+    "url": "https://su-pal.github.io/",
+    "image": "https://su-pal.github.io/assets/profile.jpg",
+    "jobTitle": "Ph.D. Candidate in Chemistry",
+    "description": "Ph.D. Candidate in Chemistry at Oklahoma State University studying cobalt photocatalysis, photoredox catalysis, and synthetic methodology.",
+    "worksFor": {
+      "@type": "CollegeOrUniversity",
+      "name": "Oklahoma State University",
+      "url": "https://go.okstate.edu/"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/subrata-pal1",
+      "https://scholar.google.com/citations?user=A8R_AuMAAAAJ&hl=en",
+      "https://orcid.org/0000-0002-8070-7318"
+    ],
+    "knowsAbout": [
+      "Organic chemistry",
+      "Photochemistry",
+      "Photoredox catalysis",
+      "Cobalt catalysis",
+      "Synthetic methodology",
+      "Minisci reactions",
+      "Transition-metal photocatalysis"
+    ]
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -59,17 +116,45 @@
   }
   nav a:hover{color:var(--text);text-decoration:none;background:var(--surface-2);}
   nav a.active{color:var(--photon);background:var(--photon-dim);}
-  #nav-toggle{display:none;}
+  #nav-toggle{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
   .burger{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
   @media (max-width:760px){
-    nav ul{
-      position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:4px;
-      background:var(--surface);border-bottom:1px solid var(--line);padding:10px 16px;
-      max-height:0;overflow:hidden;transition:max-height .25s ease;
+    nav{
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
     }
-    #nav-toggle:checked ~ ul{max-height:400px;padding:10px 16px;}
+    nav ul{
+      flex-direction:column;
+      gap:4px;
+      background:var(--surface);
+      border-bottom:1px solid var(--line);
+      padding:0 16px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease,padding .25s ease;
+    }
+    #nav-toggle:checked ~ nav ul{
+      max-height:400px;
+      padding:10px 16px;
+    }
     nav a{display:block;padding:12px 14px;}
-    .burger{display:block;}
+    .burger{
+      display:block;
+      background:none;
+      border:none;
+      color:var(--text);
+      font-size:1.4rem;
+      line-height:1;
+      cursor:pointer;
+      padding:6px 8px;
+      z-index:101;
+    }
   }
 
   /* ---------- Hero ---------- */
@@ -281,7 +366,7 @@
   <div class="nav-inner">
     <a href="#top" class="brand"><span class="dot"></span>Subrata Pal</a>
     <input type="checkbox" id="nav-toggle">
-    <label for="nav-toggle" class="burger" aria-label="Toggle menu">☰</label>
+    <label for="nav-toggle" class="burger" aria-label="Toggle navigation menu">☰</label>
     <nav>
       <ul>
         <li><a href="#education">Education</a></li>
