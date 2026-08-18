@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subrata Pal | Chemistry Researcher</title>
+<meta name="description" content="Hi! This is Subrata Pal, a Ph.D. Candidate in the Chemistry dept., Oklahoma State University, working with Dr. Spencer Pitre on Cobalt photocatalyzed reactions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f8fc;
+    --surface:#ffffff;
+    --surface-2:#f0f3f9;
+    --line:#e2e7f0;
+    --photon:#2f8fe0;      /* excitation-light blue — his research runs on visible-light irradiation */
+    --photon-dim:rgba(47,143,224,0.10);
+    --emit:#e08a3c;        /* warm catalytic-energy amber — complementary to the excitation photon */
+    --emit-dim:rgba(224,138,60,0.12);
+    --text:#151b28;
+    --muted:#5b6472;
+    --dim:#8992a3;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;color:var(--text);line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(47,143,224,0.10), transparent 38%),
+      radial-gradient(circle at 88% 4%, rgba(224,138,60,0.09), transparent 40%),
+      radial-gradient(circle at 50% 60%, rgba(47,143,224,0.06), transparent 45%),
+      radial-gradient(circle, rgba(21,27,40,0.055) 1px, transparent 1.4px);
+    background-size:auto, auto, auto, 26px 26px;
+    background-attachment:fixed;
+  }
+  a{color:var(--photon);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;color:var(--text);letter-spacing:-0.01em;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- Scroll progress ---------- */
+  #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--photon),var(--emit));z-index:200;width:0%;}
+
+  /* ---------- Nav ---------- */
+  header{position:sticky;top:0;z-index:100;background:rgba(246,248,252,0.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:980px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);display:flex;align-items:center;gap:8px;}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--photon),var(--emit));}
+  nav ul{list-style:none;display:flex;gap:6px;}
+  nav a{
+    color:var(--muted);font-weight:500;font-size:0.86rem;padding:8px 14px;border-radius:999px;
+    transition:color .2s ease,background .2s ease;
+  }
+  nav a:hover{color:var(--text);text-decoration:none;background:var(--surface-2);}
+  nav a.active{color:var(--photon);background:var(--photon-dim);}
+  #nav-toggle{display:none;}
+  .burger{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
+  @media (max-width:760px){
+    nav ul{
+      position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:4px;
+      background:var(--surface);border-bottom:1px solid var(--line);padding:10px 16px;
+      max-height:0;overflow:hidden;transition:max-height .25s ease;
+    }
+    #nav-toggle:checked ~ ul{max-height:400px;padding:10px 16px;}
+    nav a{display:block;padding:12px 14px;}
+    .burger{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:96px 24px 72px;text-align:center;}
+  .hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;}
+
+  .hero-photo-wrap{
+    width:250px;height:250px;border-radius:50%;margin:0 auto 22px;position:relative;z-index:1;
+    background:conic-gradient(from 180deg, var(--photon), var(--emit), var(--photon));
+    padding:3px;box-shadow:0 10px 30px rgba(47,143,224,0.22);
+  }
+  .hero-photo{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#fff;border:3px solid #fff;}
+  .hero-photo-fallback{
+    width:100%;height:100%;border-radius:50%;background:var(--surface-2);border:3px solid #fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2.2rem;color:var(--text);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem;color:var(--photon);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;
+    font-weight:500;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--photon),var(--emit));flex-shrink:0;}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.2rem);margin-bottom:16px;}
+  .hero p{color:var(--muted);font-size:1.04rem;margin-bottom:30px;}
+  .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    padding:12px 26px;border-radius:999px;font-weight:600;font-size:0.9rem;letter-spacing:0.01em;
+    transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;
+  }
+  .btn-primary{background:linear-gradient(120deg,var(--photon),var(--emit));color:#fff;box-shadow:0 8px 22px rgba(47,143,224,0.24);}
+  .btn-primary:hover{text-decoration:none;transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 12px 28px rgba(47,143,224,0.32);}
+  .btn-outline{border:1.5px solid var(--line);color:var(--text);background:var(--surface);}
+  .btn-outline:hover{border-color:var(--photon);color:var(--photon);text-decoration:none;transform:translateY(-2px);}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:76px 0;}
+  .section-head{text-align:center;max-width:560px;margin:0 auto 48px;}
+  .section-head h2{
+    font-size:1.6rem;display:inline-flex;align-items:center;gap:10px;
+  }
+  .section-head h2::before{content:"";width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--photon),var(--emit));flex-shrink:0;}
+  .section-head p{color:var(--muted);font-size:0.95rem;margin-top:12px;}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+  /* ---------- Logo badge ---------- */
+  .logo-badge{
+    position:relative;width:100px;height:100px;border-radius:50%;flex-shrink:0;
+    background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    box-shadow:0 2px 6px rgba(21,27,40,0.06);
+  }
+  .logo-badge img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;}
+  .logo-badge span{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);font-size:0.6rem;text-align:center;}
+
+  /* ---------- Gradient-top cards (Education / Research / Teaching / Awards / Affiliations) ---------- */
+  .grad-grid{display:grid;grid-template-columns:1fr;gap:22px;max-width:760px;margin:0 auto;}
+  @media (max-width:760px){.grad-grid{grid-template-columns:1fr;}}
+  .grad-grid.single{grid-template-columns:1fr;max-width:640px;}
+  .grad-grid.triple{grid-template-columns:repeat(3,1fr);max-width:960px;}
+  @media (max-width:820px){.grad-grid.triple{grid-template-columns:1fr;}}
+
+  .grad-card{
+    position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 24px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(21,27,40,0.03);
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .grad-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:5px;
+    background:linear-gradient(90deg,var(--photon),var(--emit));
+  }
+  .grad-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(21,27,40,0.08);}
+  .grad-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px;}
+  .grad-date{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--photon);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px;font-weight:600;font-style:italic;}
+  .grad-title{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:1px;}
+  .grad-place{font-size:0.8rem;color:var(--muted);font-style:italic;margin-bottom:8px;}
+  .grad-advisor{font-size:0.87rem;color:var(--text);font-weight:600;font-style:italic;margin-bottom:5px;}
+  .grad-diss{font-size:0.87rem;color:#3b4354;}
+  .grad-card ul{padding-left:18px;margin-top:10px;}
+  .grad-card ul li{margin-bottom:6px;font-size:0.9rem;color:#3b4354;}
+  .grad-card ul li::marker{color:var(--photon);}
+
+  /* Award spotlight card */
+  .award-card{text-align:center;padding:36px 32px;}
+  .award-card .grad-title{font-size:1.2rem;margin-bottom:6px;}
+  .award-card .org{color:var(--photon);font-weight:600;font-size:0.88rem;margin-bottom:14px;}
+  .award-card p{color:#3b4354;font-size:0.94rem;}
+  .award-badge{
+    display:inline-flex;align-items:center;gap:6px;margin:0 auto 16px;
+    background:var(--emit-dim);color:var(--emit);font-size:0.72rem;font-weight:700;
+    padding:6px 14px;border-radius:999px;letter-spacing:0.04em;text-transform:uppercase;
+  }
+
+  /* Affiliation cards (same gradient family, centered content) */
+  .affil-card{text-align:center;padding:28px 22px;}
+  .affil-card .logo-badge{margin:0 auto 14px;}
+  .affil-name{font-size:0.96rem;font-weight:600;color:var(--text);margin-bottom:4px;}
+  .affil-org{font-size:0.84rem;color:var(--muted);margin-bottom:12px;}
+  .affil-role{
+    display:inline-block;font-size:0.74rem;font-weight:600;color:var(--photon);
+    background:var(--photon-dim);padding:5px 12px;border-radius:999px;
+  }
+
+  /* ---------- Boxed cards (Publications / Presentations — unchanged style, liked by user) ---------- */
+  .card-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+  .box{
+    background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--photon);
+    border-radius:var(--radius);padding:20px 24px;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .box:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(21,27,40,0.08);border-left-color:var(--emit);}
+  .box-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--photon);font-weight:600;font-style:italic;margin-bottom:6px;}
+  .box-title{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px;}
+  .box-body{font-size:0.94rem;color:#3b4354;}
+  .box-body a{color:var(--photon);}
+  .box-note{font-size:0.8rem;color:var(--dim);margin-top:8px;}
+
+  /* ---------- Skills (unchanged style, liked by user) ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto;}
+  @media (max-width:820px){.skills-grid{grid-template-columns:1fr;}}
+
+  .skill-card{
+    position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 24px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(21,27,40,0.03);
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .skill-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:5px;
+    background:linear-gradient(90deg,var(--photon),var(--emit));
+  }
+  .skill-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(21,27,40,0.07);}
+  .skill-icon{
+    width:42px;height:42px;border-radius:10px;background:var(--photon-dim);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .skill-icon svg{width:20px;height:20px;stroke:var(--photon);}
+  .skill-card h3{font-size:0.98rem;margin-bottom:14px;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tag{
+    font-size:0.78rem;background:var(--surface-2);border:1px solid var(--line);
+    padding:6px 12px;border-radius:999px;color:#3b4354;transition:border-color .15s ease,color .15s ease;
+  }
+  .skill-tag:hover{border-color:var(--photon);color:var(--photon);}
+
+  /* ---------- Contact ---------- */
+  .contact-card{
+    max-width:520px;margin:0 auto;background:var(--surface);border:1px solid var(--line);
+    border-radius:20px;padding:40px;position:relative;overflow:hidden;
+    box-shadow:0 1px 2px rgba(21,27,40,0.03);
+  }
+  .contact-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--photon),var(--emit));}
+  .contact-form label{display:block;font-size:0.78rem;font-weight:600;color:var(--muted);margin:16px 0 6px;text-transform:uppercase;letter-spacing:0.04em;}
+  .contact-form label:first-child{margin-top:0;}
+  .contact-form input,.contact-form textarea{
+    width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+    font-family:'Inter',sans-serif;font-size:0.92rem;background:var(--surface-2);color:var(--text);
+    transition:border-color .15s ease,box-shadow .15s ease;
+  }
+  .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--dim);}
+  .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--photon);box-shadow:0 0 0 3px var(--photon-dim);}
+  .contact-form button{margin-top:24px;width:100%;border:none;cursor:pointer;}
+  .contact-form button:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+  #form-status{margin-top:14px;font-size:0.86rem;text-align:center;min-height:1.2em;}
+  #form-status.success{color:#1a8a5c;}
+  #form-status.error{color:#c0392b;}
+
+  /* ---------- Footer ---------- */
+  .site-footer{padding:48px 0 40px;border-top:1px solid var(--line);margin-top:20px;}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start;}
+  @media (max-width:700px){
+    .footer-grid{grid-template-columns:1fr;text-align:left;gap:28px;}
+    .footer-center,.footer-right{align-items:flex-start !important;text-align:left !important;}
+  }
+  .footer-col{display:flex;flex-direction:column;gap:6px;font-size:0.86rem;color:var(--muted);}
+  .footer-left{align-items:flex-start;}
+  .footer-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.02rem;color:var(--text);margin-bottom:2px;}
+  .footer-copyright{display:flex;align-items:center;gap:6px;margin-top:8px;}
+  .footer-copyright svg{width:14px;height:14px;flex-shrink:0;}
+  .footer-center{text-align:center;align-items:center;}
+  .footer-right{text-align:right;align-items:flex-end;}
+  .footer-heading{font-weight:700;color:var(--text);font-size:0.88rem;margin-bottom:4px;}
+  .footer-col a{color:var(--muted);}
+  .footer-col a:hover{color:var(--photon);}
+  .footer-icons{display:flex;gap:12px;margin-top:2px;}
+  .footer-icons a{
+    width:34px;height:34px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .15s ease;
+  }
+  .footer-icons a:hover{background:linear-gradient(135deg,var(--photon),var(--emit));color:#fff;border-color:transparent;}
+  .footer-icons svg{width:15px;height:15px;}
+
+  :focus-visible{outline:2px solid var(--emit);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span>Subrata Pal</a>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="burger" aria-label="Toggle menu">☰</label>
+    <nav>
+      <ul>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <img src="assets/profile.jpg" alt="Portrait of Subrata Pal" class="hero-photo"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'hero-photo-fallback',textContent:'SP'}))">
+    </div>
+    <div class="eyebrow">Ph.D. Candidate · Chemistry</div>
+    <h1>Subrata Pal</h1>
+    <p>
+      I work with Professor Spencer P. Pitre at Oklahoma State University on cobalt-photocatalyzed reactions —
+      studying first-row transition metal (Co) photocatalysts and their use in carbon–carbon bond-forming
+      reactions for pharmaceutically relevant molecules. Currently seeking <strong>postdoctoral researcher position</strong> in
+      photoredox catalysis or synthetic methodology development, with long-term interests in an independent
+      academic research career.
+    </p>
+    <div class="btn-row">
+      <a href="assets/Subrata_Pal_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download CV</a>
+      <a href="#education" class="btn btn-outline">View Profile</a>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Education</h2>
+    </div>
+
+    <div class="grad-grid">
+      <div class="grad-card reveal">
+        <div class="grad-card-head">
+          <div>
+            <div class="grad-date">Aug. 2022 – Present (Expected Dec. 2027)</div>
+            <div class="grad-title">Ph.D. Candidate in Organic Chemistry</div>
+			<div class="grad-place">Department of Chemistry, Oklahoma State University, Stillwater, OK</div>
+          </div>
+          <div class="logo-badge">
+            <img src="assets/logos/osu.png" alt="Oklahoma State University logo" onerror="this.remove()">
+            <span>OSU</span>
+          </div>
+        </div>
+        <div class="grad-advisor">Advisor: Dr. Spencer P. Pitre</div>
+        <div class="grad-diss">Dissertation (working title): "Structure–Activity Relationship Investigation of Cobalt Complexes for Photocatalyzed Reactions Under Visible Light Irradiation."</div>
+      </div>
+
+      <div class="grad-card reveal">
+        <div class="grad-card-head">
+          <div>
+            <div class="grad-date">Jan. 2016 – Apr. 2018</div>
+            <div class="grad-title">MS in Organic Chemistry</div>
+			<div class="grad-place">Department of Chemistry, Shahjalal University of Science &amp; Technology, Sylhet, Bangladesh</div>
+          </div>
+          <div class="logo-badge">
+            <img src="assets/logos/sust.png" alt="Shahjalal University of Science & Technology logo" onerror="this.remove()">
+            <span>SUST</span>
+          </div>
+        </div>
+        <div class="grad-advisor">Advisor: Dr. Mohammad Mizanur Rahman Khan</div>
+        <div class="grad-diss">Dissertation: "Synthesis and Investigation of PVA–ZnS and PVA–AgI–ZnO Nanocomposite Films: Towards Efficient and Stable Photocatalyst for Organic Dye Removal."</div>
+      </div>
+
+      <div class="grad-card reveal">
+        <div class="grad-card-head">
+          <div>
+            <div class="grad-date">Jan. 2011 – Dec. 2015</div>
+            <div class="grad-title">B.Sc. in Chemistry</div>
+			<div class="grad-place">Department of Chemistry, Shahjalal University of Science &amp; Technology, Sylhet, Bangladesh</div>
+          </div>
+          <div class="logo-badge">
+            <img src="assets/logos/sust.png" alt="Shahjalal University of Science & Technology logo" onerror="this.remove()">
+            <span>SUST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Research Experience</h2>
+    </div>
+
+    <div class="grad-grid">
+      <div class="grad-card reveal">
+        <div class="grad-card-head">
+          <div>
+            <div class="grad-date">Jan. 2025 – Present</div>
+            <div class="grad-title">Graduate Research Assistant — Pitre Lab</div>
+			<div class="grad-place">Oklahoma State University, Stillwater, OK</div>
+          </div>
+          <div class="logo-badge">
+            <img src="assets/logos/osu.png" alt="Oklahoma State University logo" onerror="this.remove()">
+            <span>OSU</span>
+          </div>
+        </div>
+        <ul>
+          <li>Synthesized a library of cobaloxime catalysts and evaluated their catalytic performance alongside commercially available Co(II) catalysts in Giese-type reactions.</li>
+          <li>Enabled acid-free regioselective cobalt-photocatalyzed C–H Minisci alkylation through urea activation of pyridines.</li>
+          <li>Employed TLC, 1D/2D NMR spectroscopy, and GC–MS to characterize reaction intermediates and products.</li>
+          <li>Performed computational studies using Gaussian and ORCA to calculate bond dissociation energies (BDEs) and redox potentials.</li>
+          <li>Mentored one undergraduate researcher.</li>
+        </ul>
+      </div>
+
+      <div class="grad-card reveal">
+        <div class="grad-card-head">
+          <div>
+            <div class="grad-date">Jan. 2016 – Apr. 2018</div>
+            <div class="grad-title">Graduate Research Assistant — MMR Khan Research Group</div>
+			<div class="grad-place">Shahjalal University of Science &amp; Technology, Sylhet, Bangladesh</div>
+          </div>
+          <div class="logo-badge">
+            <img src="assets/logos/sust.png" alt="Shahjalal University of Science & Technology logo" onerror="this.remove()">
+            <span>SUST</span>
+          </div>
+        </div>
+        <ul>
+          <li>Synthesized PVA–ZnS and PVA–AgI–ZnO nanocomposite films with varied PVA compositions.</li>
+          <li>Investigated their photocatalytic activity toward organic dye degradation.</li>
+          <li>Employed FT–IR, UV-vis, and PL spectroscopy to characterize the nanocomposite films.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Publications</h2>
+    </div>
+
+    <div class="card-list">
+      <div class="box reveal">
+        <div class="box-eyebrow">2026</div>
+        <div class="box-body">Pal, S.‡; Pauze, M.‡; Shafiei, N.‡; Pitre, S. P.* "<a href="https://doi.org/10.1021/acs.organomet.5c00444" target="_blank" rel="noopener">Base Metal Photocatalysts: A Bright Future in Photoredox Catalysis?</a>" <em>Organometallics</em> <strong>2026</strong>, <em>45 (6)</em>, 587–612.</div>
+        <div class="box-note">‡ equal contribution; * corresponding author</div>
+      </div>
+
+      <div class="box reveal">
+        <div class="box-eyebrow">2019</div>
+        <div class="box-body">Khan, M. M. R.*; Pal, S.; Hoque, M. M.; Alam, M. R.; Younus, M.; Kobayashi, H. "<a href="https://doi.org/10.1021/acsomega.8b02807" target="_blank" rel="noopener">Simple Fabrication of PVA–ZnS Composite Films with Superior Photocatalytic Performance: Enhanced Luminescence Property, Morphology, and Thermal Stability.</a>" <em>ACS Omega</em> <strong>2019</strong>, <em>4 (4)</em>, 6144–6153.</div>
+        <div class="box-note">* corresponding author</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="presentations">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Conference Presentations</h2>
+    </div>
+
+    <div class="card-list">
+      <div class="box reveal">
+        <div class="box-eyebrow">Apr. 2026 · Oral Presentation</div>
+        <div class="box-title">67th Annual ACS Pentasectional Meeting</div>
+        <div class="box-body">"Structure–Activity Relationship Investigation of Cobalt Complexes for Photocatalyzed Reactions Under Visible Light Irradiation"</div>
+        <div class="box-note">Pittsburg State University, Pittsburg, Kansas, USA</div>
+      </div>
+      <div class="box reveal">
+        <div class="box-eyebrow">Mar. 2025 · Oral Presentation</div>
+        <div class="box-title">66th Annual ACS Pentasectional Meeting</div>
+        <div class="box-body">"Investigation of Cobalt(II) Complexes for Photocatalyzed Reactions Under Visible Light Irradiation"</div>
+        <div class="box-note">Oral Roberts University, Tulsa, Oklahoma, USA</div>
+      </div>
+      <div class="box reveal">
+        <div class="box-eyebrow">Oct. 2024 · Poster Presentation</div>
+        <div class="box-title">ACS Southwest Regional Meeting</div>
+        <div class="box-body">"Investigation of Cobalt(II) Complexes for Photocatalyzed Reactions Under Visible Light Irradiation"</div>
+        <div class="box-note">Waco Convention Center, Waco, Texas, USA</div>
+      </div>
+      <div class="box reveal">
+        <div class="box-eyebrow">Nov. 2023 · Poster Presentation</div>
+        <div class="box-title">ACS Southwest Regional Meeting</div>
+        <div class="box-body">"Cobaloxime-Photocatalyzed Minisci Reactions Under Visible Light Irradiation"</div>
+        <div class="box-note">Omni Oklahoma City Hotel, Oklahoma City, Oklahoma, USA</div>
+      </div>
+      <div class="box reveal">
+        <div class="box-eyebrow">Jan. 2018 · Poster Presentation</div>
+        <div class="box-title">International Conference on Nanotechnology and Condensed Matter Physics</div>
+        <div class="box-body">"Synthesis, Interaction and Thermal Properties of PVA–ZnS Nanocomposite Films: Application as Stable Photocatalyst for Organic Dye Removal"</div>
+        <div class="box-note">Dept. of Physics, Bangladesh University of Engineering and Technology, Dhaka, Bangladesh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Awards &amp; Fellowship</h2>
+    </div>
+
+    <div class="grad-grid single">
+      <div class="grad-card award-card reveal">
+        <div class="award-badge">Fellowship</div>
+        <div class="grad-title">National Science &amp; Technology (NST) Fellowship</div>
+        <div class="org">Ministry of Science and Technology, Bangladesh</div>
+        <p>Awarded National Science &amp; Technology (NST) Fellowship by the Ministry of Science and Technology, Bangladesh, for the project "Synthesis, Investigation of PVA-ZnS and PVA-AgI-ZnO Nanocomposite Films: Their Application for Organic Dye Removal from Wastewater."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="teaching">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Teaching Experience</h2>
+    </div>
+
+    <div class="grad-grid">
+      <div class="grad-card reveal">
+        <div class="grad-card-head">
+          <div>
+            <div class="grad-date">Aug. 2022 – Dec. 2024</div>
+            <div class="grad-title">Graduate Teaching Assistant</div>
+			<div class="grad-place">Oklahoma State University, Stillwater, OK</div>
+          </div>
+          <div class="logo-badge">
+            <img src="assets/logos/osu.png" alt="Oklahoma State University logo" onerror="this.remove()">
+            <span>OSU</span>
+          </div>
+        </div>
+        <ul>
+          <li>Instructed General Chemistry I Lab, Organic Chemistry I, Survey of Organic Chemistry and Lab.</li>
+          <li>Led laboratory sessions of approximately 50 undergraduate students per semester; graded lab reports and exams.</li>
+        </ul>
+      </div>
+
+      <div class="grad-card reveal">
+        <div class="grad-card-head">
+          <div>
+            <div class="grad-date">Sep. 2019 – Jul. 2022</div>
+            <div class="grad-title">Lecturer (Chemistry)</div>
+			<div class="grad-place">Green University of Bangladesh (GUB), Dhaka, Bangladesh</div>
+          </div>
+          <div class="logo-badge">
+            <img src="assets/logos/gub.png" alt="Green University of Bangladesh logo" onerror="this.remove()">
+            <span>GUB</span>
+          </div>
+        </div>
+        <ul>
+          <li>Instructed General Chemistry and Organic Chemistry (theory and laboratory).</li>
+          <li>Led weekly discussion sections and laboratory sessions for approximately 200 undergraduate students per semester.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Laboratory &amp; Technical Skills</h2>
+    </div>
+
+	<div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6M10 2v6.2a2 2 0 0 1-.4 1.2L5 16.5A2.5 2.5 0 0 0 7 20h10a2.5 2.5 0 0 0 2-4L14.4 9.4a2 2 0 0 1-.4-1.2V2"/><path d="M7 15h10"/></svg>
+        </div>
+        <h3>Synthetic Techniques</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Design &amp; synthesis of organometallic Co complexes</span>
+          <span class="skill-tag">Multi-step organic synthesis</span>
+          <span class="skill-tag">Photochemical reactions</span>
+          <span class="skill-tag">Air- &amp; moisture-sensitive Schlenk / glovebox techniques</span>
+          <span class="skill-tag">Extractions</span>
+          <span class="skill-tag">Distillations</span>
+          <span class="skill-tag">Recrystallizations</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        </div>
+        <h3>Instrumentation &amp; Characterization</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">NMR (1D/2D)</span>
+          <span class="skill-tag">UV–Vis</span>
+          <span class="skill-tag">FT–IR</span>
+          <span class="skill-tag">TLC</span>
+          <span class="skill-tag">GC–MS</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+        </div>
+        <h3>Software</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">ChemDraw</span>
+          <span class="skill-tag">MestReNova</span>
+          <span class="skill-tag">OriginPro</span>
+          <span class="skill-tag">Gaussian</span>
+          <span class="skill-tag">ORCA</span>
+          <span class="skill-tag">Avogadro</span>
+          <span class="skill-tag">Molden</span>
+          <span class="skill-tag">LaTeX</span>
+          <span class="skill-tag">MS Office Suite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="affiliations">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Professional Affiliations</h2>
+    </div>
+
+    <div class="grad-grid triple">
+      <div class="grad-card affil-card reveal">
+        <div class="logo-badge">
+          <img src="assets/logos/acs.png" alt="American Chemical Society logo" onerror="this.remove()">
+          <span>ACS</span>
+        </div>
+        <div class="affil-name">American Chemical Society</div>
+        <div class="affil-org">Student Member</div>
+        <div class="affil-role">since Oct. 2025</div>
+      </div>
+
+      <div class="grad-card affil-card reveal">
+        <div class="logo-badge">
+          <img src="assets/logos/acsgso.png" alt="ACS Graduate Student Organization OSU logo" onerror="this.remove()">
+          <span>ACSGSO</span>
+        </div>
+        <div class="affil-name">ACS Grad. Student Org. — OSU</div>
+        <div class="affil-org">Secretary</div>
+        <div class="affil-role">since Sep. 2025</div>
+      </div>
+
+      <div class="grad-card affil-card reveal">
+        <div class="logo-badge">
+          <img src="assets/logos/chemfusion.png" alt="ChemFusion logo" onerror="this.remove()">
+          <span>CF</span>
+        </div>
+        <div class="affil-name">ChemFusion</div>
+        <div class="affil-org">Advisor</div>
+        <div class="affil-role">since Mar. 2021</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Get in Touch</h2>
+      <p>Open to postdoctoral opportunities, collaborations, and research inquiries.</p>
+    </div>
+
+    <div class="contact-card reveal">
+      <form class="contact-form" id="inquiry-form" action="https://formspree.io/f/xvkpwevl" method="POST">
+        <label for="fname">First Name*</label>
+        <input type="text" id="fname" name="first_name" placeholder="Jane" required>
+        <label for="lname">Last Name*</label>
+        <input type="text" id="lname" name="last_name" placeholder="Doe" required>
+        <label for="email">Email*</label>
+        <input type="email" id="email" name="email" placeholder="jane@university.edu" required>
+        <label for="area">Research Area</label>
+        <input type="text" id="area" name="research_area" placeholder="e.g. photoredox catalysis">
+        <label for="msg">Inquiries*</label>
+        <textarea id="msg" name="message" rows="4" placeholder="Tell me a bit about your inquiry..." required></textarea>
+        <input type="hidden" name="_subject" value="New inquiry from your CV site">
+        <button type="submit" class="btn btn-primary" id="inquiry-submit">Send Inquiry</button>
+        <div id="form-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col footer-left">
+      <div class="footer-name">Subrata Pal</div>
+      <div>Oklahoma State University</div>
+      <div>Stillwater, OK</div>
+      <div class="footer-copyright">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5a3 3 0 1 0 0 5"/></svg>
+        <span>Subrata Pal</span>
+      </div>
+    </div>
+
+    <div class="footer-col footer-center">
+      <div class="footer-heading">Direct Contact</div>
+      <a href="mailto:supal@okstate.edu">supal@okstate.edu</a>
+    </div>
+
+    <div class="footer-col footer-right">
+      <div class="footer-heading">Connect Me</div>
+      <div class="footer-icons">
+        <a href="https://www.linkedin.com/in/subrata-pal1" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.5 8.5h3.9V21H3.5zM9.9 8.5h3.74v1.71h.05c.52-.98 1.8-2.02 3.7-2.02 3.96 0 4.69 2.6 4.69 5.99V21h-3.9v-6.06c0-1.45-.03-3.31-2.02-3.31-2.03 0-2.34 1.58-2.34 3.2V21H9.9z"/></svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=A8R_AuMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V15h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg>
+        </a>
+        <a href="https://orcid.org/0000-0002-8070-7318" target="_blank" rel="noopener" aria-label="ORCID iD">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.37 6.65a1.17 1.17 0 1 1 0 2.34 1.17 1.17 0 0 1 0-2.34zM6.6 9.9h1.55v8.2H6.6zm3.05 0h3.19c3.04 0 4.44 2.17 4.44 4.1 0 2.24-1.75 4.1-4.44 4.1H9.65zm1.55 1.4v5.4h1.5c1.87 0 3-1.1 3-2.7 0-1.4-.79-2.7-3-2.7z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  const progress = document.getElementById('progress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = scrolled + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const toggle = document.getElementById('nav-toggle');
+  function setActive(){
+    let current = '';
+    sections.forEach(sec=>{
+      const top = sec.offsetTop - 110;
+      if(window.scrollY >= top) current = sec.getAttribute('id');
+    });
+    navLinks.forEach(link=>{
+      link.classList.toggle('active', link.getAttribute('href') === '#'+current);
+    });
+  }
+  window.addEventListener('scroll', setActive);
+  setActive();
+  navLinks.forEach(link=>{
+    link.addEventListener('click', ()=>{ if(toggle) toggle.checked = false; });
+  });
+
+  // Contact form — submits via fetch to Formspree so the page never redirects
+  const inquiryForm = document.getElementById('inquiry-form');
+  const submitBtn = document.getElementById('inquiry-submit');
+  const statusEl = document.getElementById('form-status');
+  if(inquiryForm){
+    inquiryForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const endpoint = inquiryForm.getAttribute('action');
+      if(!endpoint || endpoint.includes('YOUR_FORM_ID')){
+        statusEl.textContent = 'Form is not connected yet — see setup instructions.';
+        statusEl.className = 'error';
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      statusEl.textContent = '';
+      statusEl.className = '';
+      try{
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(inquiryForm)
+        });
+        if(res.ok){
+          statusEl.textContent = "Thanks — your message has been sent. I'll get back to you soon.";
+          statusEl.className = 'success';
+          inquiryForm.reset();
+        } else {
+          statusEl.textContent = 'Something went wrong sending your message. Please try again or email directly.';
+          statusEl.className = 'error';
+        }
+      } catch(err){
+        statusEl.textContent = 'Network error — please try again or email directly.';
+        statusEl.className = 'error';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Inquiry';
+      }
+    });
+  }
+
+  // Scroll-reveal animations
+  const reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(el=>io.observe(el));
+  } else {
+    reveals.forEach(el=>el.classList.add('in-view'));
+  }
+</script>
+
+</body>
+</html>
