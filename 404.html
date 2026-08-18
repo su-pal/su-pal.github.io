@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found | Subrata Pal</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#2f8fe0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f8fc; --surface:#ffffff; --line:#e2e7f0;
+    --photon:#2f8fe0; --emit:#e08a3c; --text:#151b28; --muted:#5b6472;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;color:var(--text);min-height:100vh;
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 15%, rgba(47,143,224,0.10), transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(224,138,60,0.10), transparent 40%);
+  }
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:20px;
+    padding:56px 44px;max-width:440px;box-shadow:0 20px 50px rgba(21,27,40,0.06);
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:5px;
+    background:linear-gradient(90deg,var(--photon),var(--emit));
+  }
+  .code{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:4.5rem;line-height:1;
+    background:linear-gradient(120deg,var(--photon),var(--emit));
+    -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px;
+  }
+  h1{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;margin-bottom:12px;}
+  p{color:var(--muted);font-size:0.95rem;margin-bottom:28px;line-height:1.6;}
+  a.btn{
+    display:inline-block;padding:12px 28px;border-radius:999px;font-weight:600;font-size:0.9rem;
+    background:linear-gradient(120deg,var(--photon),var(--emit));color:#fff;text-decoration:none;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="code">404</div>
+    <h1>This page went into an excited state and will came back down to ground state soon.</h1>
+    <p>Thank you for your patience. See you soon.</p>
+    <a href="/" class="btn">Return to Homepage</a>
+  </div>
+</body>
+</html>
